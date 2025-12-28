@@ -9,9 +9,15 @@ import { ArrowRight, Zap, Target, Layers, Command, Plus, Hexagon, Code, Mic, Sen
 // --- Theme Config ---
 const COLORS = {
   ink: '#0A0E27',
-  cream: '#FAF8F3',
+  cream: '#F9F8F3',
   lime: '#C3FF00',
+  red: '#FF1E1E',
 };
+
+const GridBackground = () => (
+  <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+       style={{ backgroundImage: `linear-gradient(#000 1px, transparent 1px), linear-gradient(90deg, #000 1px, transparent 1px)`, backgroundSize: '40px 40px' }} />
+);
 
 // --- Custom Components ---
 
@@ -236,39 +242,43 @@ export default function App() {
       </section>
 
       {/* Philosophy: The Architect's View */}
-      <section className="py-40 bg-cream relative px-8 border-b border-ink/10">
-        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-20 items-center">
+      <section className="py-32 bg-cream relative px-8 border-b border-ink/10 overflow-hidden">
+        <GridBackground />
+        <div className="max-w-[1400px] mx-auto grid lg:grid-cols-12 gap-20 items-center relative z-10">
           <div className="lg:col-span-7">
              <motion.h2 
                initial={{ opacity: 0, x: -50 }}
                whileInView={{ opacity: 1, x: 0 }}
-               className="text-6xl md:text-9xl font-black uppercase tracking-tighter leading-[0.9] mb-16"
+               className="text-7xl md:text-[9vw] font-black uppercase tracking-tighter leading-[0.8] mb-16 text-ink"
              >
-               Aš nekuriu <br/> <span className="text-lime bg-ink px-4 italic font-accent">Turinio</span>
+               Aš nekuriu <br/> <span className="text-red italic font-accent underline decoration-lime underline-offset-[12px]">Turinio</span>
              </motion.h2>
              <div className="space-y-12">
-               <p className="text-3xl font-light italic opacity-70 leading-tight">
-                 "Dauguma verslų Lietuvoje skęsta informacinėje migloje. Jie sako daug, bet nepasako nieko."
+               <p className="text-2xl md:text-4xl font-light italic opacity-70 leading-tight text-ink max-w-2xl">
+                 "Dauguma verslų Lietuvoje skęsta informacinėje migloje. Jie sako daug, bet <span className="text-ink font-black not-italic">nepasako nieko</span>."
                </p>
-               <div className="grid grid-cols-2 gap-8 border-t border-ink/10 pt-12">
+               <div className="grid grid-cols-2 gap-12 border-t-2 border-ink/5 pt-12">
                   <div>
-                    <h4 className="text-[10px] font-black uppercase mb-4 text-ink/40">Problema</h4>
-                    <p className="text-lg font-bold">Inertiška, bedvasė komunikacija, kuri kainuoja milijonus prarastų galimybių.</p>
+                    <h4 className="text-[10px] font-black uppercase mb-4 text-red tracking-widest">Problema</h4>
+                    <p className="text-lg font-bold text-ink/80 leading-snug">Inertiška komunikacija, kuri kainuoja milijonus galimybių.</p>
                   </div>
                   <div>
-                    <h4 className="text-[10px] font-black uppercase mb-4 text-ink/40">Sprendimas</h4>
-                    <p className="text-lg font-bold">Preciziškas lingvistinis dizainas, kuris pataiko tiesiai į vartotojo poreikį.</p>
+                    <h4 className="text-[10px] font-black uppercase mb-4 text-lime tracking-widest text-shadow-sm">Sprendimas</h4>
+                    <p className="text-lg font-bold text-ink/80 leading-snug">Preciziškas lingvistinis dizainas tiesiai į vartotoją.</p>
                   </div>
                </div>
              </div>
           </div>
           <div className="lg:col-span-5 relative">
-             <div className="aspect-[4/5] bg-ink overflow-hidden border-4 border-ink relative group">
-                <div className="absolute inset-0 bg-lime/20 group-hover:bg-lime/10 transition-colors" />
+             <div className="aspect-[4/5] bg-ink overflow-hidden relative group shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-tr from-red/20 via-transparent to-lime/20 group-hover:opacity-50 transition-opacity duration-700" />
                 <div className="absolute inset-0 flex items-center justify-center p-12">
-                   <div className="text-[30vw] font-black text-lime opacity-5">S</div>
-                   <div className="absolute bottom-12 left-12 text-cream font-black text-2xl uppercase tracking-tighter italic">
-                      Sraute <br/> Architektūra
+                   <div className="text-[35vw] font-black text-lime opacity-[0.03] absolute -right-20 -bottom-20 rotate-12 group-hover:rotate-0 transition-transform duration-1000">S</div>
+                   <div className="text-center relative z-10">
+                      <Command size={64} className="text-red mb-8 mx-auto" strokeWidth={1} />
+                      <div className="text-cream font-black text-3xl uppercase tracking-tighter italic leading-none">
+                         Sraute <br/> <span className="text-lime">Architektūra</span>
+                      </div>
                    </div>
                 </div>
              </div>
@@ -277,61 +287,135 @@ export default function App() {
       </section>
 
       {/* The Matrix: Core Systems */}
-      <section id="matrix" className="bg-ink text-cream py-32 border-b border-cream/10">
-        <div className="max-w-[1800px] mx-auto">
-          <div className="px-8 mb-24 flex flex-col md:flex-row justify-between items-end gap-12">
-            <div>
-              <span className="text-lime text-[10px] font-black uppercase tracking-[0.4em] mb-4 block">Operacinė Sistema</span>
-              <h2 className="text-6xl md:text-8xl font-black uppercase tracking-tighter font-accent italic">Galimybių Matrica</h2>
+      <section id="matrix" className="bg-cream py-32 relative overflow-hidden px-8 border-b border-ink/5">
+        <GridBackground />
+        <div className="max-w-[1800px] mx-auto relative z-10">
+          <div className="grid lg:grid-cols-12 gap-12 items-end mb-32">
+            <div className="lg:col-span-8">
+              <h2 className="text-7xl md:text-[10vw] font-black uppercase tracking-tighter leading-[0.8] text-ink">
+                Sistemos <br/> Logika
+              </h2>
             </div>
-            <p className="max-w-md text-sm opacity-50 uppercase tracking-widest leading-loose">
-              Mūsų darbas nėra linijinis. Tai daugiadimensė sistema, jungianti psichologiją, duomenis ir estetinį tikslumą.
-            </p>
+            <div className="lg:col-span-4">
+              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-relaxed text-ink/60">
+                KIEKVIENAS PROJEKTAS YRA UNIKALI <br/> ARCHITEKTŪRINĖ KONSTELIACIJA. KONSTRUOJAME <br/> <span className="text-ink">PELNĄ</span> PER PRECIZINĮ ŽODŽIO DIZAINĄ.
+              </p>
+            </div>
           </div>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 border-b border-r border-cream/10">
-            <MatrixBox idx={0} icon={Target} title="Dėmesio Valdymas" desc="Paverčiame 8 sekundžių langą į negrįžtamą lojalumą per vizualinį ir tekstinį ritmą." />
-            <MatrixBox idx={1} icon={Layers} title="Struktūrinis Gylis" desc="Sukuriame turinio hierarchiją, kuri organiškai veda klientą nuo smalsumo iki pirkimo." />
-            <MatrixBox idx={2} icon={Hexagon} title="Kultūrinis Kodas" desc="Integruojame prekės ženklą į Lietuvos kultūrinį kontekstą taip, kad jis jaustųsi savas." />
-            <MatrixBox idx={3} icon={Code} title="Konversijos Kalba" desc="Kiekvienas žodis turi komercinę vertę. Optimizuojame ROI per lingvistinį tikslumą." />
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8">
+            {[
+              { title: "Dėmesio Valdymas", icon: Target, num: "01", color: COLORS.red, desc: "Valdome vartotojo dėmesį per vizualinį ir tekstinį ritmą." },
+              { title: "Konversijos Kodas", icon: Code, num: "02", color: COLORS.lime, desc: "Kiekvienas simbolis turi savo ROI. Optimizuojame tekstus pelnui." },
+              { title: "Identiteto Svoris", icon: Hexagon, num: "03", color: COLORS.red, desc: "Suteikiame prekės ženklui identitetą, kuris tampa rinkos standartu." },
+              { title: "Srautinis Gylis", icon: Layers, num: "04", color: COLORS.lime, desc: "Organiškas kliento vedimas per piltuvėlį be jokio pasipriešinimo." }
+            ].map((item, i) => (
+              <div key={i} className="flex flex-col">
+                <div className="flex justify-between items-center mb-12">
+                  <div className="w-10 h-10 flex items-center justify-center border border-ink/10 rounded-full relative">
+                    <div className="absolute inset-0 scale-75 blur-md opacity-20 rounded-full" style={{ backgroundColor: item.color }} />
+                    <item.icon size={18} style={{ color: item.color }} strokeWidth={1.5} />
+                  </div>
+                  <span className="text-[8px] font-mono text-ink/20 font-black tracking-widest">{item.num}</span>
+                </div>
+                <h3 className="text-xl font-black uppercase tracking-tight text-ink mb-4 leading-tight">{item.title}</h3>
+                <p className="text-[10px] text-ink/40 uppercase tracking-[0.1em] leading-relaxed font-bold">
+                  {item.desc}
+                </p>
+              </div>
+            ))}
           </div>
         </div>
       </section>
 
       {/* Process: The Blueprint */}
-      <section id="arch" className="py-40 bg-cream px-8 overflow-hidden">
-        <div className="max-w-4xl mx-auto relative">
-          <div className="mb-40 text-center">
-            <h2 className="text-7xl md:text-9xl font-black uppercase tracking-tighter italic font-accent">Projektavimas</h2>
+      <section id="arch" className="py-32 bg-cream px-8 overflow-hidden relative border-b border-ink/5">
+        <GridBackground />
+        <div className="max-w-[1800px] mx-auto relative z-10">
+          <div className="mb-32">
+            <h2 className="text-[12vw] font-black uppercase tracking-tighter italic font-accent text-ink leading-none">Procesas</h2>
           </div>
           
-          <div className="space-y-40 relative">
-            {/* Connection Line */}
-            <div className="absolute left-[20px] top-0 bottom-0 w-px bg-ink/10 hidden md:block" />
-            
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-px md:bg-ink/5 relative">
             {[
-              { num: "01", label: "Auditas", title: "Triukšmo Analizė", desc: "Nustatome, kur jūsų balsas pradingsta konkurentų fone ir kur slypi neišnaudotas potencialas." },
-              { num: "02", label: "Sistemos", title: "Balso Architektūra", desc: "Konstruojame unikalų komunikacijos karkasą, kuris tarnaus jūsų verslui metus, ne dienas." },
-              { num: "03", label: "Gamyba", title: "Pilnas Išpildymas", desc: "Nuo manifesto iki kasdienių interakcijų – kiekviena detalė suderinama su pagrindine strategija." }
+              { num: "01", label: "Auditas", title: "Defektų Paieška", desc: "Nustatome, kur jūsų balsas pradingsta konkurentų fone ir kur slypi neišnaudotas potencialas.", color: COLORS.red },
+              { num: "02", label: "Sistemos", title: "Srauto Dizainas", desc: "Konstruojame unikalų komunikacijos karkasą, kuris tarnaus jūsų verslui metus, ne dienas.", color: COLORS.lime },
+              { num: "03", label: "Gamyba", title: "Išpildymas", desc: "Nuo manifesto iki kasdienių interakcijų – kiekviena detalė suderinama su pagrindine strategija.", color: COLORS.red }
             ].map((step, i) => (
               <motion.div 
                 key={i}
-                initial={{ opacity: 0, y: 50 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="flex flex-col md:flex-row gap-12 relative"
+                className="bg-cream p-12 flex flex-col justify-between group relative overflow-hidden"
               >
-                <div className="w-12 h-12 bg-ink text-lime flex items-center justify-center font-black shrink-0 z-10">
-                   {step.num}
-                </div>
                 <div>
-                   <span className="text-[10px] font-black uppercase tracking-widest text-ink/30 mb-2 block">{step.label}</span>
-                   <h3 className="text-4xl md:text-6xl font-black uppercase tracking-tighter mb-8">{step.title}</h3>
-                   <p className="text-xl opacity-60 leading-relaxed italic border-l-2 border-lime pl-8">
-                     "{step.desc}"
-                   </p>
+                  <div className="flex items-center gap-4 mb-12">
+                    <span className="text-xl font-black text-ink" style={{ color: step.color }}>{step.num}</span>
+                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/40">{step.label}</span>
+                  </div>
+                  <h3 className="text-4xl font-black uppercase tracking-tighter text-ink mb-8 leading-none group-hover:italic transition-all duration-500">{step.title}</h3>
+                  <p className="text-xs text-ink/50 uppercase tracking-widest leading-relaxed font-bold max-w-[280px]">
+                    {step.desc}
+                  </p>
+                </div>
+                {/* Accent line at bottom */}
+                <div className="mt-20 h-px w-full bg-ink/10 relative overflow-hidden">
+                  <motion.div 
+                    className="absolute inset-0"
+                    style={{ backgroundColor: step.color }}
+                    initial={{ scaleX: 0, originX: 0 }}
+                    whileInView={{ scaleX: 1 }}
+                    transition={{ duration: 1, delay: i * 0.2 }}
+                  />
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Lithuanian Market Pain Points */}
+      <section className="py-32 bg-cream relative px-8 overflow-hidden border-b border-ink/5 text-ink">
+        <GridBackground />
+        <div className="max-w-[1800px] mx-auto relative z-10">
+          <div className="mb-32">
+            <h2 className="text-7xl md:text-[10vw] font-black uppercase tracking-tighter leading-[0.8]">
+              Rinkos <br/> Defektai
+            </h2>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/5">
+            {[
+              { title: "Generinė Kalba", desc: "90% verslų Lietuvoje skamba identiškai. Identiteto mirtis." },
+              { title: "Žema Konversija", desc: "Srautas yra, bet pardavimų nėra. Prarandate tūkstančius." },
+              { title: "Kainų Karas", desc: "Konkuruojate kaina, nes nesugebate paaiškinti vertės." },
+              { title: "Branding Chaos", desc: "Kiekvienas kanalas kalba skirtingai. Klientai nepasitiki." }
+            ].map((p, i) => (
+              <div key={i} className="bg-cream p-12 flex flex-col justify-between aspect-square group hover:bg-red/[0.02] transition-colors">
+                <div className="flex justify-between items-start">
+                  <div className="w-10 h-10 border border-ink/10 flex items-center justify-center text-red font-black text-xl">✕</div>
+                  <span className="text-[8px] font-mono text-ink/20 font-black tracking-widest uppercase">ERR_0{i+1}</span>
+                </div>
+                <div>
+                  <h3 className="text-2xl font-black uppercase tracking-tighter text-ink mb-4 leading-none">{p.title}</h3>
+                  <p className="text-[10px] text-ink/40 uppercase tracking-[0.1em] leading-relaxed font-bold">
+                    {p.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-32 p-16 bg-ink flex flex-col md:flex-row items-center justify-between gap-12 group overflow-hidden relative">
+            <div className="absolute inset-0 bg-red opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="relative z-10">
+              <h3 className="text-4xl md:text-7xl font-black uppercase tracking-tighter text-cream leading-none group-hover:text-ink transition-colors duration-500">
+                Mes <span className="italic font-accent">Sutvarkome</span> <br/> Jūsų Balsą.
+              </h3>
+            </div>
+            <button className="relative z-10 px-16 py-8 bg-lime text-ink font-black text-xl uppercase tracking-tighter hover:bg-cream transition-all group-hover:bg-ink group-hover:text-cream">
+              Gauti Sprendimą
+            </button>
           </div>
         </div>
       </section>
@@ -395,16 +479,61 @@ export default function App() {
         </motion.div>
       </section>
 
-      {/* Footer: Minimalist Ledger */}
-      <footer className="py-12 bg-ink text-cream/30 px-8 border-t border-cream/5">
-        <div className="max-w-[1800px] mx-auto flex flex-col md:flex-row justify-between items-center gap-8 font-mono text-[8px] uppercase tracking-widest">
-           <div>© 2024 SRAUTE ARCHITECTURAL SERVICES</div>
-           <div className="flex gap-12">
-              <a href="#" className="hover:text-lime transition-colors">Instagram</a>
-              <a href="#" className="hover:text-lime transition-colors">LinkedIn</a>
-              <a href="#" className="hover:text-lime transition-colors">Legal</a>
-           </div>
-           <div>BUILD_VERSION: 2.0.4_ACID</div>
+      {/* Footer: Premium Massive */}
+      <footer className="bg-ink text-cream relative pt-32 pb-12 px-8 overflow-hidden">
+        <div className="max-w-[1800px] mx-auto relative z-10">
+          <div className="grid lg:grid-cols-12 gap-20 mb-32">
+            <div className="lg:col-span-8">
+              <h2 className="text-[18vw] font-black uppercase tracking-tighter leading-[0.7] mb-16 text-red">
+                Sraute <span className="text-white/5">.lt</span>
+              </h2>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-12">
+                <div>
+                  <h4 className="text-lime font-black text-[10px] uppercase tracking-widest mb-6">Navigacija</h4>
+                  <ul className="text-[10px] uppercase tracking-[0.2em] space-y-3 font-bold opacity-40">
+                    <li><a href="#matrix" className="hover:text-red hover:opacity-100 transition-all">Sistema</a></li>
+                    <li><a href="#arch" className="hover:text-lime hover:opacity-100 transition-all">Architektūra</a></li>
+                    <li><a href="#proof" className="hover:text-red hover:opacity-100 transition-all">Rezultatai</a></li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="text-red font-black text-[10px] uppercase tracking-widest mb-6">Miestai</h4>
+                  <ul className="text-[10px] uppercase tracking-[0.2em] space-y-3 font-bold opacity-40">
+                    <li>Vilnius</li>
+                    <li>Kaunas</li>
+                    <li>Klaipėda</li>
+                  </ul>
+                </div>
+                <div className="col-span-2">
+                  <h4 className="text-white font-black text-[10px] uppercase tracking-widest mb-6">Vizija</h4>
+                  <p className="text-[10px] uppercase tracking-[0.2em] font-bold opacity-40 leading-relaxed max-w-xs">
+                    ARCHITEKTŪRINIS PRIĖJIMAS PRIE PREKĖS ŽENKLO KOMUNIKACIJOS. KONSTRUOJAME AUTORITETĄ.
+                  </p>
+                </div>
+              </div>
+            </div>
+            
+            <div className="lg:col-span-4 flex flex-col justify-end">
+              <div className="mb-12">
+                <h4 className="text-white/20 font-black text-[10px] uppercase tracking-widest mb-4">Projektams</h4>
+                <a href="mailto:hi@sraute.lt" className="text-4xl md:text-5xl font-black text-lime hover:text-red transition-colors duration-500 break-all">
+                  hi@sraute.lt
+                </a>
+              </div>
+              <div className="flex gap-4">
+                {['Instagram', 'LinkedIn'].map(s => (
+                  <a key={s} href="#" className="flex-1 py-5 border border-white/10 text-center text-[10px] font-black uppercase tracking-widest hover:bg-cream hover:text-ink transition-all">
+                    {s}
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8 text-[9px] font-mono uppercase tracking-[0.5em] opacity-20">
+            <p>© 2025 SRAUTE — BALSO ARCHITEKTŪRA</p>
+            <p className="text-red">BY DEIMANTĖ DAUGINTYTĖ</p>
+          </div>
         </div>
       </footer>
     </div>
