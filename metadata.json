@@ -1,0 +1,8 @@
+{
+  "name": "Sraute.lt - Deimantė Daugintytė",
+  "description": "Ultra-premium landing page for communication architect Deimantė Daugintytė. Neubrutalism meets Swiss minimalism with Lithuanian soul.",
+  "requestFramePermissions": [
+    "camera",
+    "microphone"
+  ]
+}
