@@ -174,7 +174,7 @@ export default function App() {
       <nav className="fixed top-0 left-0 w-full z-[100] border-b border-ink/10 backdrop-blur-md bg-cream/80">
         <div className="max-w-[1800px] mx-auto grid grid-cols-4 md:grid-cols-12 h-20 items-center px-8">
           <div className="col-span-2 md:col-span-3 font-black text-xl tracking-tighter uppercase flex items-center gap-3">
-            <Command className="text-lime" /> Deimantė
+            <Command className="text-lime" /> SRAUTE
           </div>
           <div className="hidden md:flex col-span-6 justify-center gap-16 text-[10px] font-black uppercase tracking-[0.2em] opacity-40">
             <a href="#matrix" className="hover:opacity-100 transition-opacity">Sistema</a>
@@ -290,82 +290,95 @@ export default function App() {
       <section id="matrix" className="bg-cream py-32 relative overflow-hidden px-8 border-b border-ink/5">
         <GridBackground />
         <div className="max-w-[1800px] mx-auto relative z-10">
-          <div className="grid lg:grid-cols-12 gap-12 items-end mb-32">
-            <div className="lg:col-span-8">
-              <h2 className="text-7xl md:text-[10vw] font-black uppercase tracking-tighter leading-[0.8] text-ink">
-                Sistemos <br/> Logika
-              </h2>
-            </div>
-            <div className="lg:col-span-4">
-              <p className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] leading-relaxed text-ink/60">
-                KIEKVIENAS PROJEKTAS YRA UNIKALI <br/> ARCHITEKTŪRINĖ KONSTELIACIJA. KONSTRUOJAME <br/> <span className="text-ink">PELNĄ</span> PER PRECIZINĮ ŽODŽIO DIZAINĄ.
-              </p>
+          <div className="mb-32">
+            <h2 className="text-7xl md:text-[10vw] font-black uppercase tracking-tighter leading-[0.8] text-ink mb-16">
+              Sistemos <br/> Logika
+            </h2>
+            <div className="max-w-5xl">
+              <div className="bg-lime text-ink px-8 py-6">
+                <p className="text-lg md:text-2xl font-bold uppercase tracking-tight leading-relaxed">
+                  ŽODŽIŲ ARCHITEKTŪRA, KURI NEŠA <span className="bg-ink text-lime px-2 py-1">REALŲ PELNĄ</span>. STRATEGINIS BALSAS, KURIS TRANSFORMUOJA <span className="bg-red text-cream px-2 py-1">SRAUTĄ Į KONVERSIJĄ</span>.
+                </p>
+              </div>
             </div>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 md:gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { title: "Dėmesio Valdymas", icon: Target, num: "01", color: COLORS.red, desc: "Valdome vartotojo dėmesį per vizualinį ir tekstinį ritmą." },
-              { title: "Konversijos Kodas", icon: Code, num: "02", color: COLORS.lime, desc: "Kiekvienas simbolis turi savo ROI. Optimizuojame tekstus pelnui." },
-              { title: "Identiteto Svoris", icon: Hexagon, num: "03", color: COLORS.red, desc: "Suteikiame prekės ženklui identitetą, kuris tampa rinkos standartu." },
-              { title: "Srautinis Gylis", icon: Layers, num: "04", color: COLORS.lime, desc: "Organiškas kliento vedimas per piltuvėlį be jokio pasipriešinimo." }
+              { title: "Dėmesio", titleSuffix: "Valdymas", icon: Target, num: "01", color: COLORS.red, desc: "Valdome vartotojo dėmesį per vizualinį ir tekstinį ritmą." },
+              { title: "Konversijos", titleSuffix: "Kodas", icon: Code, num: "02", color: COLORS.lime, desc: "Kiekvienas simbolis turi savo ROI. Optimizuojame tekstus pelnui." },
+              { title: "Identiteto", titleSuffix: "Svoris", icon: Hexagon, num: "03", color: COLORS.red, desc: "Suteikiame prekės ženklui identitetą, kuris tampa rinkos standartu." },
+              { title: "Srautinis", titleSuffix: "Gylis", icon: Layers, num: "04", color: COLORS.lime, desc: "Organiškas kliento vedimas per piltuvėlį be jokio pasipriešinimo." }
             ].map((item, i) => (
-              <div key={i} className="flex flex-col">
-                <div className="flex justify-between items-center mb-12">
-                  <div className="w-10 h-10 flex items-center justify-center border border-ink/10 rounded-full relative">
-                    <div className="absolute inset-0 scale-75 blur-md opacity-20 rounded-full" style={{ backgroundColor: item.color }} />
-                    <item.icon size={18} style={{ color: item.color }} strokeWidth={1.5} />
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                className="group relative p-6 bg-ink border border-ink/10 hover:border-lime transition-all duration-500"
+              >
+                <div className="absolute top-0 left-0 w-full h-0.5" style={{ backgroundColor: item.color }} />
+
+                <div className="flex justify-between items-center mb-6">
+                  <div className="w-10 h-10 flex items-center justify-center border" style={{ borderColor: item.color }}>
+                    <item.icon size={20} style={{ color: item.color }} strokeWidth={2} />
                   </div>
-                  <span className="text-[8px] font-mono text-ink/20 font-black tracking-widest">{item.num}</span>
+                  <span className="text-[9px] font-mono font-black tracking-wider" style={{ color: item.color }}>{item.num}</span>
                 </div>
-                <h3 className="text-xl font-black uppercase tracking-tight text-ink mb-4 leading-tight">{item.title}</h3>
-                <p className="text-[10px] text-ink/40 uppercase tracking-[0.1em] leading-relaxed font-bold">
+
+                <h3 className="text-xl font-black uppercase tracking-tight mb-4 leading-none">
+                  <span style={{ color: COLORS.lime }}>{item.title}</span> <span className="text-cream">{item.titleSuffix}</span>
+                </h3>
+
+                <p className="text-[11px] text-cream/60 leading-relaxed font-medium">
                   {item.desc}
                 </p>
-              </div>
+              </motion.div>
             ))}
           </div>
         </div>
       </section>
 
       {/* Process: The Blueprint */}
-      <section id="arch" className="py-32 bg-cream px-8 overflow-hidden relative border-b border-ink/5">
-        <GridBackground />
-        <div className="max-w-[1800px] mx-auto relative z-10">
-          <div className="mb-32">
-            <h2 className="text-[12vw] font-black uppercase tracking-tighter italic font-accent text-ink leading-none">Procesas</h2>
+      <section id="arch" className="py-16 md:py-24 bg-cream px-6 md:px-8 overflow-hidden relative">
+        <div className="max-w-[1600px] mx-auto relative z-10">
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter text-ink leading-none mb-3">Procesas</h2>
+            <div className="w-16 h-0.5 bg-lime"></div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 md:gap-px md:bg-ink/5 relative">
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {[
-              { num: "01", label: "Auditas", title: "Defektų Paieška", desc: "Nustatome, kur jūsų balsas pradingsta konkurentų fone ir kur slypi neišnaudotas potencialas.", color: COLORS.red },
-              { num: "02", label: "Sistemos", title: "Srauto Dizainas", desc: "Konstruojame unikalų komunikacijos karkasą, kuris tarnaus jūsų verslui metus, ne dienas.", color: COLORS.lime },
-              { num: "03", label: "Gamyba", title: "Išpildymas", desc: "Nuo manifesto iki kasdienių interakcijų – kiekviena detalė suderinama su pagrindine strategija.", color: COLORS.red }
+              { num: "01", label: "Auditas", title: "Defektų", titleSuffix: "Paieška", desc: "Nustatome, kur jūsų balsas pradingsta konkurentų fone ir kur slypi neišnaudotas potencialas.", color: COLORS.red },
+              { num: "02", label: "Sistemos", title: "Srauto", titleSuffix: "Dizainas", desc: "Konstruojame unikalų komunikacijos karkasą, kuris tarnaus jūsų verslui metus, ne dienas.", color: COLORS.lime },
+              { num: "03", label: "Gamyba", title: "Išpildymas", titleSuffix: "", desc: "Nuo manifesto iki kasdienių interakcijų – kiekviena detalė suderinama su pagrindine strategija.", color: COLORS.red }
             ].map((step, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                className="bg-cream p-12 flex flex-col justify-between group relative overflow-hidden"
+                transition={{ delay: i * 0.1 }}
+                className="bg-ink p-6 flex flex-col justify-between group relative overflow-hidden border border-ink/10 hover:border-lime transition-all duration-500"
               >
                 <div>
-                  <div className="flex items-center gap-4 mb-12">
-                    <span className="text-xl font-black text-ink" style={{ color: step.color }}>{step.num}</span>
-                    <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-ink/40">{step.label}</span>
+                  <div className="flex items-center gap-2 mb-5">
+                    <span className="text-xs font-black" style={{ color: step.color }}>{step.num}</span>
+                    <span className="text-[8px] font-bold uppercase tracking-wider text-cream/30">{step.label}</span>
                   </div>
-                  <h3 className="text-4xl font-black uppercase tracking-tighter text-ink mb-8 leading-none group-hover:italic transition-all duration-500">{step.title}</h3>
-                  <p className="text-xs text-ink/50 uppercase tracking-widest leading-relaxed font-bold max-w-[280px]">
+                  <h3 className="text-xl md:text-2xl font-black uppercase tracking-tight mb-4 leading-none">
+                    <span style={{ color: COLORS.lime }}>{step.title}</span> <span className="text-cream">{step.titleSuffix}</span>
+                  </h3>
+                  <p className="text-[11px] text-cream/60 leading-relaxed font-medium">
                     {step.desc}
                   </p>
                 </div>
-                {/* Accent line at bottom */}
-                <div className="mt-20 h-px w-full bg-ink/10 relative overflow-hidden">
-                  <motion.div 
+                <div className="mt-8 h-px w-full bg-cream/5 relative overflow-hidden">
+                  <motion.div
                     className="absolute inset-0"
                     style={{ backgroundColor: step.color }}
                     initial={{ scaleX: 0, originX: 0 }}
                     whileInView={{ scaleX: 1 }}
-                    transition={{ duration: 1, delay: i * 0.2 }}
+                    transition={{ duration: 0.8, delay: i * 0.15 }}
                   />
                 </div>
               </motion.div>
@@ -375,34 +388,41 @@ export default function App() {
       </section>
 
       {/* Lithuanian Market Pain Points */}
-      <section className="py-32 bg-cream relative px-8 overflow-hidden border-b border-ink/5 text-ink">
-        <GridBackground />
-        <div className="max-w-[1800px] mx-auto relative z-10">
-          <div className="mb-32">
-            <h2 className="text-7xl md:text-[10vw] font-black uppercase tracking-tighter leading-[0.8]">
+      <section className="py-16 md:py-24 bg-ink relative px-6 md:px-8 overflow-hidden">
+        <div className="max-w-[1600px] mx-auto relative z-10">
+          <div className="mb-12 md:mb-16">
+            <h2 className="text-4xl md:text-6xl font-black uppercase tracking-tighter leading-[0.9] text-cream">
               Rinkos <br/> Defektai
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-px bg-ink/5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
-              { title: "Generinė Kalba", desc: "90% verslų Lietuvoje skamba identiškai. Identiteto mirtis." },
-              { title: "Žema Konversija", desc: "Srautas yra, bet pardavimų nėra. Prarandate tūkstančius." },
-              { title: "Kainų Karas", desc: "Konkuruojate kaina, nes nesugebate paaiškinti vertės." },
-              { title: "Branding Chaos", desc: "Kiekvienas kanalas kalba skirtingai. Klientai nepasitiki." }
+              { title: "Generinė", titleSuffix: "Kalba", desc: "90% verslų Lietuvoje skamba identiškai. Identiteto mirtis." },
+              { title: "Žema", titleSuffix: "Konversija", desc: "Srautas yra, bet pardavimų nėra. Prarandate tūkstančius." },
+              { title: "Kainų", titleSuffix: "Karas", desc: "Konkuruojate kaina, nes nesugebate paaiškinti vertės." },
+              { title: "Branding", titleSuffix: "Chaos", desc: "Kiekvienas kanalas kalba skirtingai. Klientai nepasitiki." }
             ].map((p, i) => (
-              <div key={i} className="bg-cream p-12 flex flex-col justify-between aspect-square group hover:bg-red/[0.02] transition-colors">
-                <div className="flex justify-between items-start">
-                  <div className="w-10 h-10 border border-ink/10 flex items-center justify-center text-red font-black text-xl">✕</div>
-                  <span className="text-[8px] font-mono text-ink/20 font-black tracking-widest uppercase">ERR_0{i+1}</span>
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: i * 0.08 }}
+                className="p-6 flex flex-col justify-between min-h-[220px] group hover:border-lime transition-all duration-500 border border-cream/10 bg-cream/5"
+              >
+                <div className="flex justify-between items-start mb-6">
+                  <div className="w-8 h-8 border flex items-center justify-center font-black text-sm border-red text-red">✕</div>
+                  <span className="text-[8px] font-mono font-black tracking-wider uppercase text-lime opacity-30">ERR_0{i+1}</span>
                 </div>
                 <div>
-                  <h3 className="text-2xl font-black uppercase tracking-tighter text-ink mb-4 leading-none">{p.title}</h3>
-                  <p className="text-[10px] text-ink/40 uppercase tracking-[0.1em] leading-relaxed font-bold">
+                  <h3 className="text-lg md:text-xl font-black uppercase tracking-tight mb-3 leading-none">
+                    <span style={{ color: COLORS.lime }}>{p.title}</span> <span className="text-cream">{p.titleSuffix}</span>
+                  </h3>
+                  <p className="text-[11px] leading-relaxed font-medium text-cream/60">
                     {p.desc}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
 
@@ -416,34 +436,6 @@ export default function App() {
             <button className="relative z-10 px-16 py-8 bg-lime text-ink font-black text-xl uppercase tracking-tighter hover:bg-cream transition-all group-hover:bg-ink group-hover:text-cream">
               Gauti Sprendimą
             </button>
-          </div>
-        </div>
-      </section>
-
-      {/* Proof: High-Value Testimonials */}
-      <section id="proof" className="bg-ink py-40 text-cream px-8 border-y border-cream/10">
-        <div className="max-w-[1400px] mx-auto">
-          <div className="grid lg:grid-cols-2 gap-24 items-center">
-             <div className="space-y-12">
-                <h2 className="text-5xl md:text-8xl font-black uppercase tracking-tighter italic font-accent leading-none">
-                  Įrodytas <br/> <span className="text-lime not-italic">Svoris</span>
-                </h2>
-                <div className="w-20 h-px bg-lime" />
-                <p className="text-xl opacity-50 uppercase tracking-widest">
-                  Mes nedirbame su kiekvienu. Mes dirbame su tais, kurie nori dominuoti savo rinkos segmente.
-                </p>
-             </div>
-             <div className="space-y-4">
-               {[
-                 { q: "„Ji pakeitė mūsų supratimą apie tai, kaip verslas turėtų kalbėti su rinka. Rezultatas: +40% konversija per 3 mėnesius.“", n: "Tech Hub CEO" },
-                 { q: "„Tai nebuvo tik konsultacija. Tai buvo pilna komunikacijos operacinės sistemos perinstaliacija.“", n: "Fintech įkūrėjas" }
-               ].map((t, i) => (
-                 <div key={i} className="p-12 border border-cream/10 bg-cream/5 group hover:bg-lime hover:text-ink transition-all">
-                    <p className="text-2xl font-accent italic mb-8">"{t.q}"</p>
-                    <p className="text-[10px] font-black uppercase tracking-widest opacity-40 group-hover:opacity-100">— {t.n}</p>
-                 </div>
-               ))}
-             </div>
           </div>
         </div>
       </section>
